@@ -17,6 +17,7 @@
     <script type="module" src="gallery.js"></script>
     <script type="module" src="letter.js"></script>
     <script type="module" src="rsvp.js"></script>
+    <script type="module" src="final.js"></script>
   </head>
   <body>
     <main>
@@ -359,28 +360,35 @@
         <div class="letter-bottom"><span id="letter-bottom-brand">EL ARCHIVO DE LO QUE VIENE.</span><span id="letter-page-number">PÁG. 005</span></div>
       </section>
       <section class="rsvp" id="confirmacion-asistencia" aria-labelledby="rsvp-title">
+        <!-- Cuadritos y rayas del fondo, repetidos en cada página. -->
+        <div class="deco deco-tr" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
+        <div class="deco deco-bl" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
         <div class="rsvp-inner">
           <header class="rsvp-heading" data-rsvp-reveal>
             <span class="rsvp-kicker"><span aria-hidden="true">●</span> <span id="rsvp-chapter">ARCHIVO PERSONAL / CAPÍTULO 06</span></span>
-            <h2 id="rsvp-title"><span id="rsvp-title-first">Tu lugar</span><br><em id="rsvp-title-second">en esta historia.</em></h2>
+            <h2 id="rsvp-title"><span class="r-line"><span id="rsvp-title-first">Tu lugar</span></span> <span class="r-line"><em id="rsvp-title-second">en esta historia.</em></span></h2>
             <p id="rsvp-intro">Me acompañaste de alguna manera hasta aquí. Ahora me encantaría celebrar contigo.</p>
+            <!-- Tarjeta de lugar: muestra en vivo el nombre que se escribe en la lista. -->
+            <div class="rsvp-place" id="rsvp-place" aria-hidden="true">
+              <img class="place-cap" src="assets/fondo/birrete.png" width="214" height="162" alt="">
+              <div class="place-card">
+                <span class="place-fold"></span>
+                <span class="place-index">N.º 001</span>
+                <span class="place-name" id="rsvp-place-name">Tu nombre</span>
+                <span class="place-brand">EL ARCHIVO DE LO QUE VIENE.</span>
+                <span class="place-stamp" id="rsvp-place-stamp"></span>
+              </div>
+              <span class="place-shadow"></span>
+            </div>
           </header>
 
           <div class="rsvp-register" data-rsvp-reveal>
             <div class="rsvp-register-top"><span id="rsvp-register-label">LISTA DE INVITADOS / ÚLTIMA ANOTACIÓN</span><span class="rsvp-top-index">N.º 001</span></div>
             <div class="rsvp-annotation" id="rsvp-annotation">NOS FALTA TU NOMBRE</div>
+            <div class="rsvp-panel" id="rsvp-panel"><div class="rsvp-panel-inner">
             <form id="rsvp-form" novalidate>
-              <div class="rsvp-row">
-                <span class="rsvp-row-number" aria-hidden="true">01</span>
-                <div class="rsvp-row-content">
-                  <label id="rsvp-name-label" for="rsvp-name">Tu nombre</label>
-                  <input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="60" required aria-describedby="rsvp-name-error">
-                  <p class="rsvp-error" id="rsvp-name-error" role="alert" hidden></p>
-                </div>
-              </div>
-
               <div class="rsvp-row rsvp-attendance">
-                <span class="rsvp-row-number" aria-hidden="true">02</span>
+                <span class="rsvp-row-number" aria-hidden="true">01</span>
                 <div class="rsvp-row-content">
                   <span class="rsvp-field-label" id="rsvp-attendance-label">¿Nos vemos en la celebración?</span>
                   <div class="rsvp-options" role="radiogroup" aria-labelledby="rsvp-attendance-label" aria-describedby="rsvp-attendance-error">
@@ -391,7 +399,18 @@
                 </div>
               </div>
 
-              <div class="rsvp-row" id="rsvp-guests-field" hidden>
+              <!-- El resto del formulario se abre al responder (sin JavaScript se ve completo). -->
+              <div class="rsvp-more" id="rsvp-more"><div class="rsvp-more-inner">
+              <div class="rsvp-row">
+                <span class="rsvp-row-number" aria-hidden="true">02</span>
+                <div class="rsvp-row-content">
+                  <label id="rsvp-name-label" for="rsvp-name">Tu nombre</label>
+                  <input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="60" required aria-describedby="rsvp-name-error">
+                  <p class="rsvp-error" id="rsvp-name-error" role="alert" hidden></p>
+                </div>
+              </div>
+
+              <div class="rsvp-row" id="rsvp-guests-field">
                 <span class="rsvp-row-number" aria-hidden="true">03</span>
                 <div class="rsvp-row-content">
                   <label id="rsvp-guests-label" for="rsvp-guests">Personas que asistirán, incluyéndote</label>
@@ -414,7 +433,17 @@
                 <button id="rsvp-submit" type="submit" disabled>Confirmaciones disponibles próximamente</button>
                 <p id="rsvp-whatsapp-note">Se abrirá WhatsApp. Envía el mensaje para completar tu confirmación.</p>
               </div>
+              </div></div>
             </form>
+            </div></div>
+            <!-- Agradecimiento al enviar. -->
+            <div class="rsvp-thanks" id="rsvp-thanks" tabindex="-1" hidden>
+              <h3 class="rsvp-thanks-title"><span id="rsvp-thanks-title">¡Gracias!</span></h3>
+              <p class="rsvp-thanks-message" id="rsvp-thanks-message"></p>
+              <p class="rsvp-thanks-note" id="rsvp-thanks-note" hidden></p>
+              <span class="rsvp-thanks-stamp" id="rsvp-thanks-stamp" aria-hidden="true"></span>
+              <button class="rsvp-edit" id="rsvp-edit" type="button">Cambiar mi respuesta</button>
+            </div>
             <p class="rsvp-deadline" id="rsvp-deadline">Confirma antes del 10 de diciembre de 2026 para ayudarme a preparar todo.</p>
           </div>
         </div>
@@ -422,6 +451,41 @@
           <p id="rsvp-closing">Yo pongo el motivo. Tú haces la celebración más bonita.</p>
           <span>EL ARCHIVO DE LO QUE VIENE. / PÁG. 006</span>
         </footer>
+      </section>
+      <section class="final-page" id="continuara" aria-labelledby="final-title">
+        <div class="final-inner">
+          <header class="final-heading" data-final-reveal>
+            <span class="final-kicker" id="final-kicker"><span aria-hidden="true">●</span> ARCHIVO PERSONAL / CONTINUARÁ</span>
+            <h2 id="final-title">El título lleva mi nombre.<br>La historia también lleva<br><em>un poquito del tuyo.</em></h2>
+          </header>
+
+          <div class="final-story" data-final-reveal>
+            <p class="final-thanks" id="final-thanks">Gracias por los ánimos, las risas y por estar de alguna forma en este camino. Me hará mucha ilusión compartir contigo lo que viene.</p>
+            <div class="final-signature"><span id="final-signature">Con cariño, Alex</span><small id="final-generation">Generación 2022 — 2026</small></div>
+
+            <div class="final-evidence">
+              <button class="final-stamp" id="final-stamp" type="button" aria-expanded="false" aria-controls="final-surprise"><span id="final-stamp-label">DESPUÉS DE TANTOS INTENTOS…</span><span class="final-stamp-plus" aria-hidden="true">+</span></button>
+              <div class="final-surprise" id="final-surprise" hidden>
+                <figure>
+                  <img id="final-funny-photo" src="assets/alex-evidencia-provisional.png" width="1024" height="1536" loading="lazy" alt="Alex sonríe con su birrete ladeado y un tubo de planos en el taller de Arquitectura">
+                  <figcaption id="final-surprise-note">Esta foto tampoco va en el diploma.</figcaption>
+                </figure>
+                <p id="final-surprise-message">Sí, sí terminé.<br>Ahora ven a celebrarlo conmigo.</p>
+              </div>
+            </div>
+
+            <nav class="final-actions" aria-label="Enlaces finales de la invitación">
+              <a class="final-rsvp-link" href="#confirmacion-asistencia" id="final-rsvp-link">Confirmar mi asistencia <span aria-hidden="true">↗</span></a>
+              <a class="final-top-link" href="#portada" id="final-top-link">Volver al inicio ↑</a>
+            </nav>
+          </div>
+
+          <figure class="final-photo" data-final-reveal>
+            <img id="final-main-photo" src="assets/alex-celebracion-provisional.png" width="1024" height="1536" loading="lazy" alt="Alex ríe espontáneamente tras su graduación, con toga negra y birrete en las manos">
+            <figcaption><span class="final-photo-index">FIG. 07 / EL COMIENZO</span><span class="final-photo-annotation" id="final-photo-annotation">Fin de esta etapa.<br>Inicio de muchas otras.</span></figcaption>
+          </figure>
+        </div>
+        <footer class="final-footer"><p id="final-footer-quote">Una nueva etapa, una historia para recordar.</p><a href="https://rotfstudio.com/" target="_blank" rel="noopener noreferrer">Creado por rotfstudio.com</a></footer>
       </section>
     </main>
 

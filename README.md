@@ -46,13 +46,23 @@ La carta se configura en `dist/letter-config.mjs`: nombre del graduado, textos, 
 
 El nombre y el mensaje son obligatorios, con límites de 60 y 600 caracteres. La sugerencia aparece fuera del campo y nunca se añade automáticamente. El envío valida los dos campos y abre WhatsApp con el texto codificado; el invitado completa allí el envío. La carta conserva lo escrito y no muestra una confirmación de recepción. Los textos base están también en `dist/index.html` como respaldo sin JavaScript; actualiza ese respaldo si cambias la configuración.
 
+Al llegar a la sección, el título sube línea por línea, el sobre verde se abre y deja asomar la carta, y después caen la estampilla y el matasellos; la hoja entra con sus campos en cascada y el sello de goma se marca al final. Al elegir un tipo de mensaje, la marca naranja se desliza a la opción y la sugerencia se escribe; al poner el nombre, el «De:» se subraya como una firma. El sobre es decorativo (`aria-hidden`) y con movimiento reducido todo aparece ya en su estado final.
+
 ## Sexta sección: Tu lugar en esta historia
 
 Configura `dist/rsvp-config.mjs` antes de compartir la invitación: `graduateName`, `whatsappNumber`, `maxGuests` (lugares asignados a este invitado), `deadlineDate` en formato `AAAA-MM-DD`, `timeZone` y los textos de la sección. El número está vacío y «Confirmaciones disponibles próximamente» permanece desactivado hasta que se añada un destino real de WhatsApp. La cantidad inicial es una persona y el selector solo aparece cuando la respuesta es afirmativa.
 
 El nombre y la respuesta son obligatorios; la nota es opcional. El formulario limita nombre y nota a 60 y 300 caracteres, respectivamente, y muestra errores junto a los controles. Tras validar, prepara el texto correspondiente en una URL de WhatsApp codificada. Abrir WhatsApp no confirma ni registra la asistencia: el invitado debe enviar el mensaje allí. La nota de plazo cambia después del último día configurado, según `America/Mexico_City`. Los textos base también están en `dist/index.html` como respaldo sin JavaScript.
 
-Al llegar a la sección, el título sube línea por línea, el sobre verde se abre y deja asomar la carta, y después caen la estampilla y el matasellos; la hoja entra con sus campos en cascada y el sello de goma se marca al final. Al elegir un tipo de mensaje, la marca naranja se desliza a la opción y la sugerencia se escribe; al poner el nombre, el «De:» se subraya como una firma. El sobre es decorativo (`aria-hidden`) y con movimiento reducido todo aparece ya en su estado final.
+Para que la página no se vea abrumadora, el registro empieza solo con «¿Nos vemos en la celebración?»; al elegir «Sí, ahí estaré», el resto del formulario se despliega fila por fila y el cursor queda en «Tu nombre»; con «Esta vez no podré» se vuelve a plegar. Funciona solo con CSS, incluso abriendo `index.html` con doble clic. Mientras se escribe, el nombre aparece en la tarjeta de lugar (con el birrete del fondo) a la izquierda; en celular la tarjeta se oculta. Al enviar, el botón se llena de naranja, el formulario se pliega y aparece «¡Gracias, nombre!» con un sello; si la respuesta es sí, el birrete sale volando entre confeti. «Cambiar mi respuesta» vuelve a abrir el formulario con lo escrito. Los textos nuevos (`acceptLabel`, `thanksTitle`, `thanksYes`, `thanksNo`, `stampYes`, `stampNo`, etc.) están en `dist/rsvp-config.mjs`.
+
+Mientras `whatsappNumber` esté vacío, el botón de envío solo funciona en la vista previa local (`node preview.mjs`, en `127.0.0.1` o `localhost`) para revisar la animación y el agradecimiento, y una nota aclara que no se envió nada. Publicado sin número, sigue desactivado con «Confirmaciones disponibles próximamente». Con número, abre WhatsApp y muestra el agradecimiento con el recordatorio de enviar el mensaje.
+
+## Séptima sección: Continuará
+
+El cierre presenta una fotografía espontánea, el agradecimiento y una firma. El sello «DESPUÉS DE TANTOS INTENTOS…» abre una foto divertida dentro de la misma página y cambia a «Guardar esta evidencia» para volver a cerrarla. Es un botón con estado expandido accesible por teclado, sin ventanas emergentes ni sonido. «Confirmar mi asistencia» regresa a `#confirmacion-asistencia` y «Volver al inicio» a `#portada`; ambos respetan la preferencia de movimiento reducido.
+
+Personaliza los textos, las rutas de las dos fotos y sus descripciones alternativas en `dist/final-config.mjs`. Las fotos provisionales están en `dist/assets/alex-celebracion-provisional.png` y `dist/assets/alex-evidencia-provisional.png`; fueron generadas con `image_gen` a partir del retrato ficticio de Alex para mantener coherencia visual. Si cambias los textos, actualiza también el respaldo de `dist/index.html`.
 
 ## Fondo y animaciones
 

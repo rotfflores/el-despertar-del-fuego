@@ -1,0 +1,20 @@
+// Textos e imágenes provisionales del cierre; cambia aquí los datos al personalizar.
+export const finalConfig = {
+  kicker: 'ARCHIVO PERSONAL / CONTINUARÁ',
+  titleLines: ['El título lleva mi nombre.', 'La historia también lleva', 'un poquito del tuyo.'],
+  thanks: 'Gracias por los ánimos, las risas y por estar de alguna forma en este camino. Me hará mucha ilusión compartir contigo lo que viene.',
+  signature: 'Con cariño, Alex',
+  generation: 'Generación 2022 — 2026',
+  mainPhoto: 'assets/alex-celebracion-provisional.png',
+  mainPhotoAlt: 'Alex ríe espontáneamente tras su graduación, con toga negra y birrete en las manos',
+  photoAnnotation: ['Fin de esta etapa.', 'Inicio de muchas otras.'],
+  stampClosed: 'DESPUÉS DE TANTOS INTENTOS…',
+  stampOpen: 'Guardar esta evidencia',
+  surprisePhoto: 'assets/alex-evidencia-provisional.png',
+  surprisePhotoAlt: 'Alex sonríe con su birrete ladeado y un tubo de planos en el taller de Arquitectura',
+  surpriseMessage: ['Sí, sí terminé.', 'Ahora ven a celebrarlo conmigo.'],
+  surpriseNote: 'Esta foto tampoco va en el diploma.',
+  rsvpLabel: 'Confirmar mi asistencia',
+  topLabel: 'Volver al inicio ↑',
+  footerQuote: 'Una nueva etapa, una historia para recordar.',
+};

@@ -30,4 +30,14 @@ export const rsvpConfig = {
   attendanceRequiredError: 'Elige si podrás acompañarme.',
   guestCountError: 'Elige una cantidad dentro de los lugares asignados.',
   noteTooLongError: 'La nota debe tener 300 caracteres o menos.',
+  // Agradecimiento al enviar.
+  annotationDone: 'TU NOMBRE YA ESTÁ EN LA LISTA',
+  thanksTitle: '¡Gracias, {name}!',
+  thanksYes: 'Tu lugar en esta historia ya tiene nombre. Nos vemos para celebrar.',
+  thanksNo: 'Gracias por avisarme. Aunque no estés ahí, también eres parte de esta historia.',
+  stampYes: 'NOS VEMOS AHÍ',
+  stampNo: 'GRACIAS POR AVISAR',
+  thanksWhatsapp: 'Recuerda enviar el mensaje en WhatsApp para completar tu confirmación.',
+  previewNote: 'Vista previa local: nada se envió. Agrega whatsappNumber para recibir confirmaciones.',
+  editLabel: 'Cambiar mi respuesta',
 };

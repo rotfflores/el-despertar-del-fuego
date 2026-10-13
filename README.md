@@ -20,7 +20,7 @@ El enlace «Vamos a celebrar →» lleva al capítulo 03, `#detalles-del-evento`
 
 ## Tercera sección: El siguiente capítulo empieza con una fiesta
 
-Edita los datos ficticios del evento en `dist/event-config.mjs`: nombre, graduado, fecha, recepción, cena, fin provisional, lugar, ciudad, dirección, vestimenta y `locationUrl`. Mientras `locationUrl` esté vacío, «Ubicación próximamente» es un botón desactivado, sin enlace. Cuando tengas una ubicación real, configura una URL HTTP o HTTPS y aparecerá «Cómo llegar».
+Edita los datos ficticios del evento en `dist/event-config.mjs`: nombre, graduado, fecha, recepción, cena, fin provisional, lugar, ciudad, dirección, vestimenta y `locationUrl`. El recinto de ejemplo es el jardín de eventos del Centro de Convenciones Holiday Inn Durango; la [dirección está publicada por el propio recinto](https://www.centrodeconvencioneshinndgo.com/index.html), pero esta invitación **no implica una reserva**. La URL apunta al mapa de esa ubicación. Sustituye el lugar y el enlace antes de compartir una invitación real. Mientras `locationUrl` esté vacío, «Ubicación próximamente» queda desactivado; al configurar una URL HTTP o HTTPS aparece «Cómo llegar».
 
 El contador calcula el tiempo hasta el 19 de diciembre de 2026 a las 19:00 en `America/Mexico_City`, independientemente de la zona del visitante. Al llegar a la fecha muestra «Llegó el día. ¡Vamos a celebrar!». El archivo de calendario incluye el inicio a las 19:00 y el fin provisional a las 23:00, equivalentes a 01:00 y 05:00 UTC del 20 de diciembre. Las fechas UTC del .ics son inequívocas y `X-WR-TIMEZONE` declara la zona de México.
 

@@ -7,14 +7,15 @@ X-WR-TIMEZONE:America/Mexico_City
 BEGIN:VEVENT
 UID:graduacion-2026-12-19-Alex%20Morgan%20%C2%B7%20Arquitectura@archivo-per
  sonal.invalid
-DTSTAMP:20261013T163106Z
+DTSTAMP:20261013T163953Z
 DTSTART:20261220T010000Z
 DTEND:20261220T050000Z
 SUMMARY:Celebración de graduación — Alex Morgan
-LOCATION:Jardín Horizonte\, Durango\, México\, Dirección por confirmar
+LOCATION:Jardín de eventos · Holiday Inn Durango\, Durango\, México\, Bl
+ vd. Francisco Villa 4315\, Ciudad Industrial\, C. P. 34234
 DESCRIPTION:Recepción: 19:00. Cena: 20:00.\nFormal\, con ganas de celebrar
- .\nDirección por confirmar\nFin provisional: 23:00.\nHorario de America/M
- exico_City.
+ .\nBlvd. Francisco Villa 4315\, Ciudad Industrial\, C. P. 34234\nFin provi
+ sional: 23:00.\nHorario de America/Mexico_City.
 STATUS:TENTATIVE
 TRANSP:OPAQUE
 END:VEVENT

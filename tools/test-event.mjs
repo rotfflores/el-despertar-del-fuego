@@ -23,4 +23,6 @@ assert.throws(() => buildCalendar({...event, provisionalEnd: '18:00'}));
 const fallback = await readFile(new URL('../dist/assets/graduacion-alex-morgan.ics', import.meta.url), 'utf8');
 assert.ok(fallback.includes('DTSTART:20261220T010000Z'));
 assert.ok(fallback.includes('DTEND:20261220T050000Z'));
+assert.ok(fallback.replace(/\r\n /g, '').includes('Holiday Inn Durango'));
+assert.ok(fallback.replace(/\r\n /g, '').includes('Francisco Villa 4315'));
 console.log('Verificado: zona de México, duración, cuenta regresiva, fecha cumplida y calendario .ics.');

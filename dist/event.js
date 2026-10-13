@@ -26,20 +26,22 @@ window.addEventListener('pagehide', event => {
   if (!event.persisted) URL.revokeObjectURL(calendarUrl);
 });
 
-// Sin dirección confirmada, conserva un botón nativo desactivado y sin enlace.
+// Sin URL válida, el enlace pasa a ser un botón nativo desactivado.
 let locationUrl;
 try {locationUrl = event.locationUrl ? new URL(event.locationUrl) : null;} catch {locationUrl = null;}
+const locationControl = document.getElementById('event-location');
 if (locationUrl && (locationUrl.protocol === 'https:' || locationUrl.protocol === 'http:')) {
-    const disabledButton = document.getElementById('event-location');
-    const link = document.createElement('a');
-    link.id = disabledButton.id;
-    link.className = disabledButton.className;
-    link.href = locationUrl.href;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.innerHTML = disabledButton.innerHTML;
-    link.querySelector('span').textContent = 'Cómo llegar';
-    disabledButton.replaceWith(link);
+  locationControl.href = locationUrl.href;
+  locationControl.querySelector('span').textContent = 'Cómo llegar';
+} else {
+  const disabledButton = document.createElement('button');
+  disabledButton.id = locationControl.id;
+  disabledButton.className = locationControl.className;
+  disabledButton.type = 'button';
+  disabledButton.disabled = true;
+  disabledButton.innerHTML = locationControl.innerHTML;
+  disabledButton.querySelector('span').textContent = 'Ubicación próximamente';
+  locationControl.replaceWith(disabledButton);
 }
 
 const counter = document.getElementById('event-countdown');

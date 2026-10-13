@@ -1,5 +1,5 @@
-/* Capítulo 03: datos ficticios editables. Hora local de Ciudad de México.
-   Configura locationUrl solo cuando exista una ubicación real y verificada. */
+/* Capítulo 03: evento ficticio editable, con recinto real como ejemplo.
+   Confirma la reserva y los datos antes de enviar una invitación real. */
 export const graduationEvent = {
   name: 'Celebración de graduación — Alex Morgan',
   graduate: 'Alex Morgan · Arquitectura',
@@ -8,10 +8,10 @@ export const graduationEvent = {
   dinner: '20:00',
   provisionalEnd: '23:00',
   timeZone: 'America/Mexico_City',
-  venue: 'Jardín Horizonte',
+  venue: 'Jardín de eventos · Holiday Inn Durango',
   city: 'Durango, México',
-  address: 'Dirección por confirmar',
+  address: 'Blvd. Francisco Villa 4315, Ciudad Industrial, C. P. 34234',
   attire: 'Formal, con ganas de celebrar.',
-  locationUrl: '',
+  locationUrl: 'https://www.google.com/maps/search/?api=1&query=24.05656462582388%2C-104.61796568943416',
   calendarFile: 'graduacion-alex-morgan.ics',
 };

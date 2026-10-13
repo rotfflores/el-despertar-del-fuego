@@ -312,6 +312,7 @@ figcaption{display:flex;align-items:end;justify-content:space-between;gap:20px;b
 .event-folio{font-size:9px;letter-spacing:1.6px;opacity:.65}
 .event-heading h2{font-family:var(--serif);font-size:clamp(52px,6.2vw,88px);font-weight:500;line-height:.98;letter-spacing:-.035em;margin:35px 0 24px}
 .event-heading h2 em{font-weight:500}
+.event-heading h2:after{content:"";display:block;width:64px;height:2px;background:var(--burnt);margin-top:24px;transform-origin:left}
 .event-heading>p{font-size:14px;line-height:1.8;margin:0;max-width:55ch;color:rgba(244,243,237,.82)}
 .event-ticket{display:grid;grid-template-columns:minmax(0,1fr) 260px;margin-top:52px;background:var(--chalk);color:var(--graphite);position:relative;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23252525' opacity='.035' filter='url(%23n)' d='M0 0h150v150H0z'/%3E%3C/svg%3E")}
@@ -353,17 +354,27 @@ figcaption{display:flex;align-items:end;justify-content:space-between;gap:20px;b
 .event-arrived{font-family:var(--serif);font-size:32px;line-height:1.1;max-width:20ch;margin:0}
 .countdown-fallback{font-size:13px;line-height:1.7;margin:0}
 .event-actions{display:flex;gap:12px;flex-wrap:wrap}
-.event-button{font-family:var(--sans);font-size:12px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;border:1px solid var(--chalk);border-radius:0;padding:16px 20px;text-align:center;line-height:1.4;transition:background .2s,color .2s}
-.event-button svg{width:20px;height:20px;flex:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.event-button{font-family:var(--sans);font-size:12px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;border:1px solid var(--chalk);border-radius:0;padding:16px 20px;text-align:center;line-height:1.4;transition:background .2s,color .2s,transform .25s var(--ease-out)}
+.event-button svg{width:20px;height:20px;flex:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s var(--ease-out)}
 .event-save{background:var(--chalk);color:var(--petrol)}
-.event-save:hover{background:#fff;color:var(--petrol)}
+.event-save:hover{background:#fff;color:var(--petrol);transform:translateY(-3px)}
+.event-save:hover svg{transform:translateY(2px)}
 .event-location{background:transparent;color:var(--chalk);border-color:rgba(244,243,237,.4)}
 .event-location:disabled{cursor:not-allowed;color:rgba(244,243,237,.65);border-color:rgba(244,243,237,.26)}
-a.event-location:hover{background:rgba(244,243,237,.08)}
+a.event-location:hover{background:rgba(244,243,237,.08);transform:translateY(-3px)}
+a.event-location:hover svg{transform:translateY(-2px)}
 .event-button:focus-visible{outline:2px solid var(--burnt);outline-offset:5px}
 .event-footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(244,243,237,.22);padding:21px 0 0;font-size:7px;letter-spacing:1.5px;color:rgba(244,243,237,.6);line-height:1.7}
 @keyframes event-appear{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .event-entered{animation:event-appear .8s var(--ease-out) both}
+@keyframes event-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes event-stamp{from{opacity:0;transform:rotate(-11deg) scale(1.35)}to{opacity:1;transform:none}}
+.event-heading.event-entered h2:after{animation:event-rule .85s .18s var(--ease-out) both}
+.event-ticket.event-entered .ticket-date{animation:event-appear .75s .16s var(--ease-out) both}
+.event-ticket.event-entered .ticket-information{animation:event-appear .75s .28s var(--ease-out) both}
+.event-ticket.event-entered .ticket-seal{animation:event-stamp .7s .4s var(--ease-out) both}
+.event-after.event-entered .event-countdown,.event-after.event-entered .event-arrived{animation:event-appear .7s .12s var(--ease-out) both}
+.event-after.event-entered .event-actions{animation:event-appear .7s .25s var(--ease-out) both}
 @media(max-width:1100px){
   .event-ticket{grid-template-columns:minmax(0,1fr) 220px}.ticket-main{padding:30px 30px 20px}
   .ticket-details{grid-template-columns:135px minmax(0,1fr);gap:24px}.ticket-day{font-size:116px}
@@ -398,4 +409,4 @@ a.event-location:hover{background:rgba(244,243,237,.08)}
   .event-actions{gap:11px}.event-button{width:100%;min-height:56px;font-size:13px}
   .event-footer{font-size:6px;letter-spacing:1px;gap:22px}.event-footer>span:last-child{text-align:right;max-width:24ch}
 }
-@media(prefers-reduced-motion:reduce){.event-entered{animation:none;opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.event-entered{animation:none;opacity:1;transform:none}.event-heading h2:after{transform:none}}

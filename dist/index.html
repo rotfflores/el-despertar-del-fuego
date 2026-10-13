@@ -15,6 +15,7 @@
     <script src="invitation.js" defer></script>
     <script type="module" src="event.js"></script>
     <script type="module" src="gallery.js"></script>
+    <script type="module" src="letter.js"></script>
   </head>
   <body>
     <main>
@@ -75,6 +76,9 @@
       <!-- Sección 2. Los textos y fotografías de las fichas se editan en
            el arreglo memories de invitation.js. -->
       <section class="archive" id="siguiente-seccion" tabindex="-1" aria-labelledby="archive-title">
+        <!-- Cuadritos y rayas del fondo, repetidos en cada página. -->
+        <div class="deco deco-tr" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
+        <div class="deco deco-bl" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
         <div class="archive-inner">
           <header class="archive-head">
             <div class="archive-heading">
@@ -165,6 +169,9 @@
         </div>
       </section>
       <section class="event" id="detalles-del-evento" tabindex="-1" aria-labelledby="event-title">
+        <!-- Cuadritos y rayas del fondo, repetidos en cada página. -->
+        <div class="deco deco-tl" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
+        <div class="deco deco-br" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
         <div class="event-inner">
           <header class="event-heading" data-event-reveal>
             <div class="event-kicker"><span>ARCHIVO PERSONAL / CAPÍTULO 03</span><span class="event-folio" aria-hidden="true">PÁG. 003</span></div>
@@ -222,11 +229,14 @@
         </div>
       </section>
       <section class="gallery" id="archivo-fotografico" aria-labelledby="gallery-title">
+        <!-- Cuadritos y rayas del fondo, repetidos en cada página. -->
+        <div class="deco deco-tr" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
+        <div class="deco deco-bl" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
         <div class="gallery-inner">
           <header class="gallery-head" data-gallery-reveal>
             <div class="gallery-title-block">
               <span class="gallery-kicker"><span aria-hidden="true">●</span> ARCHIVO PERSONAL / CAPÍTULO 04</span>
-              <h2 id="gallery-title">Antes de esta foto,<br><em>hubo muchas otras.</em></h2>
+              <h2 id="gallery-title"><span class="g-line"><span>Antes de esta foto,</span></span> <span class="g-line"><span><em>hubo muchas otras.</em></span></span></h2>
             </div>
             <p class="gallery-intro">El primer día, las personas que se quedaron y todo lo que pasó entre un ‘apenas empiezo’ y un ‘lo logré’.</p>
           </header>
@@ -270,11 +280,68 @@
 
           <div class="gallery-bottom" data-gallery-reveal>
             <p>Desliza para recorrer estos años.</p>
+            <span class="gallery-meter" aria-hidden="true"><span id="gallery-meter-fill"></span></span>
             <output id="gallery-progress" aria-live="polite" aria-label="Fotografía 01 de 06">01 / 06</output>
           </div>
           <p class="gallery-last-note" id="gallery-last-note" hidden>Y la próxima foto podría ser contigo, celebrando.</p>
           <div class="gallery-foot"><span>EL ARCHIVO DE LO QUE VIENE.</span><span>PÁG. 004</span></div>
         </div>
+      </section>
+      <section class="letter" id="carta-al-futuro" aria-labelledby="letter-title">
+        <div class="letter-inner">
+          <header class="letter-heading" data-letter-reveal>
+            <span class="letter-kicker"><span aria-hidden="true">●</span> <span id="letter-chapter">ARCHIVO PERSONAL / CAPÍTULO 05</span></span>
+            <h2 id="letter-title"><span id="letter-title-first">Para mi</span><br><em id="letter-title-second">siguiente versión.</em></h2>
+            <p id="letter-intro">Todavía no sé todo lo que viene. Pero me gustaría llevarme unas palabras tuyas.</p>
+            <span class="letter-side-note" id="letter-side-note" aria-hidden="true">CORRESPONDENCIA / 2026</span>
+          </header>
+
+          <div class="letter-sheet" data-letter-reveal>
+            <span class="letter-tab" id="letter-tab">PARA EL FUTURO</span>
+            <div class="letter-paper-head">
+              <span class="letter-folio" id="letter-folio">EL ARCHIVO DE LO QUE VIENE. · CARTA 005</span>
+              <div class="letter-address">
+                <p><span id="letter-to-label">Para:</span> <strong id="letter-to-name">Alex</strong></p>
+                <p><span id="letter-from-label">De:</span> <strong id="letter-from-name">tu nombre</strong></p>
+              </div>
+            </div>
+
+            <form id="future-letter-form" novalidate>
+              <fieldset class="letter-choices">
+                <legend id="letter-choice-legend">¿Qué quieres dejarme?</legend>
+                <div class="letter-choice-grid">
+                  <label><input type="radio" name="letter-type" value="deseo" checked><span>Un deseo</span></label>
+                  <label><input type="radio" name="letter-type" value="consejo"><span>Un consejo</span></label>
+                  <label><input type="radio" name="letter-type" value="predicción"><span>Una predicción</span></label>
+                </div>
+              </fieldset>
+
+              <div class="letter-suggestion" aria-live="polite">
+                <span id="letter-suggestion-label">SI NECESITAS UNA PRIMERA LÍNEA</span>
+                <p id="letter-suggestion">En esta nueva etapa, deseo que…</p>
+              </div>
+
+              <div class="letter-field">
+                <label id="letter-name-label" for="letter-name">Tu nombre</label>
+                <input id="letter-name" name="name" type="text" autocomplete="name" maxlength="60" required aria-describedby="letter-name-error">
+                <p class="letter-error" id="letter-name-error" role="alert" hidden></p>
+              </div>
+              <div class="letter-field letter-message-field">
+                <div class="letter-field-heading"><label id="letter-message-label" for="letter-message">Tus palabras</label><output id="letter-counter" for="letter-message" aria-live="off">0 / 600</output></div>
+                <textarea id="letter-message" name="message" rows="6" maxlength="600" required aria-describedby="letter-message-error"></textarea>
+                <p class="letter-error" id="letter-message-error" role="alert" hidden></p>
+              </div>
+              <button class="letter-submit" id="letter-submit" type="submit" disabled>Envío disponible próximamente</button>
+              <p class="letter-whatsapp-note" id="letter-whatsapp-note">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+            </form>
+
+            <footer class="letter-paper-foot">
+              <p id="letter-footer-note">Puede que algún día vuelva a leer esto justo cuando más lo necesite.</p>
+              <span class="letter-stamp" id="letter-stamp">PALABRAS PARA LO QUE VIENE</span>
+            </footer>
+          </div>
+        </div>
+        <div class="letter-bottom"><span id="letter-bottom-brand">EL ARCHIVO DE LO QUE VIENE.</span><span id="letter-page-number">PÁG. 005</span></div>
       </section>
     </main>
 

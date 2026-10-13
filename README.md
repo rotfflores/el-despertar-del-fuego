@@ -16,6 +16,8 @@ Las animaciones respetan `prefers-reduced-motion`; sin JavaScript todos los text
 
 Tres fichas que se abren y cierran con un botón (pueden estar varias abiertas). Sus textos y fotografías se editan en el objeto `memories` de `dist/invitation.js`; los textos también están en `dist/index.html` para que la sección se lea completa sin JavaScript (sin JavaScript las fichas aparecen abiertas). Mientras `photo` esté vacío, la ficha muestra un recuadro de «Fotografía pendiente» con la descripción de la foto que va ahí. Para usar una foto, colócala en `dist/assets/` y escribe su ruta en `photo` y su descripción en `photoAlt`.
 
+Fotografías provisionales de las fichas (Unsplash, licencia libre), en `dist/assets/recuerdos/`: 01, un estudiante cortando espuma para una maqueta en el taller; 02 de Vitaly Gariev (https://unsplash.com/photos/TB5HpfJf7mA) y 03 de Josiah Holdcroft (https://unsplash.com/photos/KiwbzBuiIX0). Sustitúyelas por fotos reales del graduado cambiando `photo` y `photoAlt`.
+
 El enlace «Vamos a celebrar →» lleva al capítulo 03, `#detalles-del-evento`.
 
 ## Tercera sección: El siguiente capítulo empieza con una fiesta
@@ -34,7 +36,15 @@ Las seis etapas, pies de foto, rutas, proporciones y descripciones alternativas 
 
 La tira de negativos se desliza con el dedo o con el desplazamiento horizontal, se detiene en cada foto y ofrece botones para avanzar. El indicador y la anotación final se actualizan según la posición. Al tocar una imagen se abre un visor con controles de teclado, Escape para cerrar y retorno de foco a la foto elegida. Se respeta `prefers-reduced-motion` y no hay reproducción automática.
 
+Al llegar a la sección, el titular sube línea por línea, la línea naranja de la introducción se dibuja y la tira de negativos entra desde la derecha mientras sus perforaciones avanzan como película. Cada foto se «revela»: pasa de un tono lavado y desenfocado a su color real, una tras otra. Cada fotograma tiene su código de borde (▸ 01A, 02A…) y las fotos llenan el cuadro sin franjas negras. En escritorio la tira también se puede arrastrar con el mouse. La barra naranja junto a «01 / 06» muestra el avance, la anotación final aparece con un trazo cuando llegas a la última foto, y el visor se abre y cambia de foto con transiciones suaves.
+
 Las seis fotografías se generaron con la herramienta integrada `image_gen`, tomando como referencia el retrato provisional de Alex. Indicaciones visuales: **01**, Alex con planos frente a la facultad el primer día; **02**, Alex con su equipo sobre planos y maquetas; **03**, Alex con amistades fuera del aula entre semestres; **04**, construcción de una gran maqueta sobre una mesa de taller; **05**, abrazo después de la última entrega; **06**, Alex con toga y birrete al graduarse. En todos los casos se pidió fotografía editorial natural, luz y grano suaves, sin texto ni marcas, manteniendo coherencia visual con el retrato de referencia. Son imágenes ficticias y reemplazables.
+
+## Quinta sección: Para mi siguiente versión
+
+La carta se configura en `dist/letter-config.mjs`: nombre del graduado, textos, tres tipos de mensaje, sugerencias y `whatsappNumber`. El número está vacío de forma deliberada y el botón muestra «Envío disponible próximamente». Para habilitarlo, coloca **un número real** con código de país en `whatsappNumber`; se aceptan dígitos y separadores habituales, y se construye una URL `https://wa.me/` solo con los dígitos. No hay número ficticio ni almacenamiento de mensajes en el sitio.
+
+El nombre y el mensaje son obligatorios, con límites de 60 y 600 caracteres. La sugerencia aparece fuera del campo y nunca se añade automáticamente. El envío valida los dos campos y abre WhatsApp con el texto codificado; el invitado completa allí el envío. La carta conserva lo escrito y no muestra una confirmación de recepción. Los textos base están también en `dist/index.html` como respaldo sin JavaScript; actualiza ese respaldo si cambias la configuración.
 
 ## Fondo y animaciones
 

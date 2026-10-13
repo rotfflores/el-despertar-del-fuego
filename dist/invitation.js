@@ -19,22 +19,22 @@ const memories = {
       title: 'El día que casi renuncié',
       teaser: 'También hubo un ‘ya no puedo’.',
       story: 'Hubo una entrega que salió mal y un momento en el que dudé de todo. Descansé, pedí ayuda y volví a intentarlo. Hoy también celebro haber seguido.',
-      photo: '',
-      photoAlt: 'Un momento de estudio o trabajo en un proyecto.',
+      photo: 'assets/recuerdos/01-estudio.jpg',
+      photoAlt: 'Un joven estudiante corta con cuidado un bloque de espuma para una maqueta en el taller.',
     },
     {
       title: 'El caos que ahora extraño',
       teaser: 'Una última entrega. Tres cafés. Cero horas de sueño.',
       story: 'Entre maquetas, mensajes de madrugada y risas a destiempo, terminamos construyendo algo más que proyectos: recuerdos que me llevo para siempre.',
-      photo: '',
-      photoAlt: 'El graduado con sus compañeros.',
+      photo: 'assets/recuerdos/02-companeros.jpg',
+      photoAlt: 'Un grupo de compañeros de universidad conversa y ríe en un salón de clases.',
     },
     {
       title: 'Quienes me sostuvieron',
       teaser: 'Este logro también tiene otros nombres.',
       story: 'A quienes me escucharon, me acompañaron y confiaron en mí cuando yo dudaba: gracias. En este logro hay un poquito de cada uno.',
-      photo: '',
-      photoAlt: 'El graduado con su familia o personas cercanas.',
+      photo: 'assets/recuerdos/03-familia.jpg',
+      photoAlt: 'Un graduado con toga y birrete abraza a su padre al terminar la ceremonia.',
     },
   ],
 };
@@ -179,3 +179,23 @@ function onRevealScroll() {
 window.addEventListener('scroll', onRevealScroll, {passive: true});
 window.addEventListener('resize', onRevealScroll);
 revealInView();
+
+/* Cuadritos y rayas de cada página: se dibujan al llegar a ellos. */
+let decos = [...document.querySelectorAll('.deco')];
+let decoFrame = 0;
+function drawDecos() {
+  decoFrame = 0;
+  decos = decos.filter(deco => {
+    const box = deco.getBoundingClientRect();
+    if (box.top > innerHeight * .92) return true;
+    deco.classList.add('is-in');
+    return false;
+  });
+  if (!decos.length) removeEventListener('scroll', onDecoScroll);
+}
+function onDecoScroll() {
+  if (!decoFrame) decoFrame = requestAnimationFrame(drawDecos);
+}
+addEventListener('scroll', onDecoScroll, {passive: true});
+addEventListener('resize', onDecoScroll);
+drawDecos();

@@ -1,0 +1,37 @@
+// Personaliza la carta aquí. Escribe un número real con clave de país;
+// se aceptan espacios y separadores habituales. Vacío mantiene el envío
+// desactivado; nunca se usa un número provisional.
+export const letterConfig = {
+  graduateName: 'Alex',
+  whatsappNumber: '',
+  chapter: 'ARCHIVO PERSONAL / CAPÍTULO 05',
+  titleFirst: 'Para mi',
+  titleSecond: 'siguiente versión.',
+  intro: 'Todavía no sé todo lo que viene. Pero me gustaría llevarme unas palabras tuyas.',
+  sideNote: 'CORRESPONDENCIA / 2026',
+  tab: 'PARA EL FUTURO',
+  folio: 'EL ARCHIVO DE LO QUE VIENE. · CARTA 005',
+  toLabel: 'Para:',
+  fromLabel: 'De:',
+  emptyFrom: 'tu nombre',
+  choiceLegend: '¿Qué quieres dejarme?',
+  suggestionLabel: 'SI NECESITAS UNA PRIMERA LÍNEA',
+  nameLabel: 'Tu nombre',
+  messageLabel: 'Tus palabras',
+  submitLabel: 'Enviar mis palabras',
+  unavailableLabel: 'Envío disponible próximamente',
+  whatsappNote: 'Se abrirá WhatsApp con tu mensaje listo para enviar.',
+  footerNote: 'Puede que algún día vuelva a leer esto justo cuando más lo necesite.',
+  stamp: 'PALABRAS PARA LO QUE VIENE',
+  bottomBrand: 'EL ARCHIVO DE LO QUE VIENE.',
+  pageNumber: 'PÁG. 005',
+  nameRequiredError: 'Escribe tu nombre para firmar la carta.',
+  messageRequiredError: 'Escribe un mensaje antes de continuar.',
+  nameTooLongError: 'Tu nombre debe tener 60 caracteres o menos.',
+  messageTooLongError: 'El mensaje debe tener 600 caracteres o menos.',
+  types: [
+    {value: 'deseo', label: 'Un deseo', prompt: 'En esta nueva etapa, deseo que…'},
+    {value: 'consejo', label: 'Un consejo', prompt: 'Cuando las cosas se pongan difíciles, recuerda…'},
+    {value: 'predicción', label: 'Una predicción', prompt: 'Dentro de unos años, te imagino…'},
+  ],
+};

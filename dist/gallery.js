@@ -1,12 +1,15 @@
 import {galleryPhotos as photos} from './gallery-config.mjs';
 
 const section = document.getElementById('archivo-fotografico');
+// Solo se oculta para animar si este módulo cargó (sin él, la sección se ve completa).
+section.classList.add('is-ready');
 const track = document.getElementById('film-track');
 const frames = [...track.querySelectorAll('.film-frame')];
 const previous = document.getElementById('gallery-prev');
 const next = document.getElementById('gallery-next');
 const progress = document.getElementById('gallery-progress');
 const lastNote = document.getElementById('gallery-last-note');
+const meter = document.getElementById('gallery-meter-fill');
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const label = index => String(index + 1).padStart(2, '0');
 const total = String(frames.length).padStart(2, '0');
@@ -33,6 +36,8 @@ function updateProgress(index) {
   previous.disabled = index === 0;
   next.disabled = index === frames.length - 1;
   lastNote.hidden = index !== frames.length - 1;
+  meter?.style.setProperty('--progress', ((index + 1) / frames.length).toFixed(4));
+  frames.forEach((frame, i) => frame.classList.toggle('is-current', i === index));
 }
 
 function currentFromScroll() {
@@ -73,6 +78,37 @@ track.addEventListener('keydown', event => {
 });
 updateProgress(0);
 
+/* Arrastrar la tira con el mouse (en pantallas táctiles ya se desliza con el dedo). */
+let drag = null;
+let suppressClick = false;
+track.addEventListener('pointerdown', event => {
+  if (event.pointerType !== 'mouse' || event.button !== 0) return;
+  drag = {x: event.clientX, left: track.scrollLeft, moved: false};
+});
+window.addEventListener('pointermove', event => {
+  if (!drag) return;
+  const dx = event.clientX - drag.x;
+  if (!drag.moved && Math.abs(dx) < 6) return;
+  if (!drag.moved) {drag.moved = true; track.classList.add('is-dragging');}
+  track.scrollLeft = drag.left - dx;
+});
+window.addEventListener('pointerup', () => {
+  if (!drag) return;
+  const moved = drag.moved;
+  drag = null;
+  if (!moved) return;
+  suppressClick = true;
+  setTimeout(() => {suppressClick = false;}, 0);
+  track.classList.remove('is-dragging');
+  goTo(currentFromScroll());
+});
+track.addEventListener('click', event => {
+  if (!suppressClick) return;
+  event.preventDefault();
+  event.stopPropagation();
+}, true);
+track.addEventListener('dragstart', event => event.preventDefault());
+
 const viewer = document.getElementById('photo-viewer');
 const viewerImage = document.getElementById('photo-viewer-image');
 const viewerTitle = document.getElementById('photo-viewer-title');
@@ -85,7 +121,12 @@ let viewedIndex = 0;
 let returnFocus;
 
 function showInViewer(index) {
-  viewedIndex = Math.max(0, Math.min(photos.length - 1, index));
+  const target = Math.max(0, Math.min(photos.length - 1, index));
+  viewerImage.style.setProperty('--swap-from', target > viewedIndex ? '28px' : target < viewedIndex ? '-28px' : '0px');
+  viewerImage.classList.remove('is-changing');
+  void viewerImage.offsetWidth;
+  viewerImage.classList.add('is-changing');
+  viewedIndex = target;
   const photo = photos[viewedIndex];
   viewerImage.src = photo.src;
   viewerImage.alt = photo.alt;
@@ -104,9 +145,15 @@ function openViewer(index, opener) {
 }
 
 function closeViewer() {
-  if (viewer.hidden) return;
-  viewer.hidden = true;
-  if (returnFocus?.isConnected) returnFocus.focus();
+  if (viewer.hidden || viewer.classList.contains('is-closing')) return;
+  const finish = () => {
+    viewer.classList.remove('is-closing');
+    viewer.hidden = true;
+    if (returnFocus?.isConnected) returnFocus.focus();
+  };
+  if (reducedMotion()) {finish(); return;}
+  viewer.classList.add('is-closing');
+  setTimeout(finish, 280);
 }
 
 viewerPrevious.addEventListener('click', () => showInViewer(viewedIndex - 1));
@@ -124,13 +171,16 @@ viewer.addEventListener('keydown', event => {
   else if (!event.shiftKey && document.activeElement === last) {event.preventDefault();first.focus();}
 });
 
-if ('IntersectionObserver' in window && !reducedMotion()) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('gallery-in-view');
-      observer.unobserve(entry.target);
-    });
-  }, {threshold: .08});
-  section.querySelectorAll('[data-gallery-reveal]').forEach(el => observer.observe(el));
+/* Entrada de la sección: se activa al llegar a ella (o si ya se pasó de largo). */
+function revealGallery() {
+  if (section.getBoundingClientRect().top > innerHeight * .78) return false;
+  section.classList.add('is-inview');
+  removeEventListener('scroll', onGalleryScroll);
+  return true;
 }
+let galleryFrame = 0;
+function onGalleryScroll() {
+  if (!galleryFrame) galleryFrame = requestAnimationFrame(() => {galleryFrame = 0; revealGallery();});
+}
+if (reducedMotion()) section.classList.add('is-inview');
+else if (!revealGallery()) addEventListener('scroll', onGalleryScroll, {passive: true});

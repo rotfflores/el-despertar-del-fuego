@@ -14,6 +14,7 @@
     <script>document.documentElement.classList.add('js')</script>
     <script src="invitation.js" defer></script>
     <script type="module" src="event.js"></script>
+    <script type="module" src="gallery.js"></script>
   </head>
   <body>
     <main>
@@ -220,6 +221,69 @@
           <footer class="event-footer"><span>EL ARCHIVO DE LO QUE VIENE.</span><span>ESTA VEZ, EL RECUERDO LO HACEMOS JUNTOS.</span></footer>
         </div>
       </section>
+      <section class="gallery" id="archivo-fotografico" aria-labelledby="gallery-title">
+        <div class="gallery-inner">
+          <header class="gallery-head" data-gallery-reveal>
+            <div class="gallery-title-block">
+              <span class="gallery-kicker"><span aria-hidden="true">●</span> ARCHIVO PERSONAL / CAPÍTULO 04</span>
+              <h2 id="gallery-title">Antes de esta foto,<br><em>hubo muchas otras.</em></h2>
+            </div>
+            <p class="gallery-intro">El primer día, las personas que se quedaron y todo lo que pasó entre un ‘apenas empiezo’ y un ‘lo logré’.</p>
+          </header>
+
+          <div class="gallery-controls" data-gallery-reveal>
+            <span class="gallery-index-label">NEGATIVOS PERSONALES <span>01—06</span></span>
+            <div class="gallery-arrows">
+              <button id="gallery-prev" type="button" aria-label="Anterior fotografía" disabled><span aria-hidden="true">←</span><span>Anterior</span></button>
+              <button id="gallery-next" type="button" aria-label="Siguiente fotografía"><span>Siguiente</span><span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+
+          <div class="filmstrip" data-gallery-reveal>
+            <div class="film-track" id="film-track" role="region" aria-label="Recorrido fotográfico deslizable" tabindex="0">
+              <figure class="film-frame film-frame--portrait">
+                <button class="film-image" type="button" aria-label="Ampliar fotografía 01: El primer día"><img src="assets/archivo/01-primer-dia.png" alt="Alex, con planos enrollados, frente a la facultad de Arquitectura en su primer día." loading="lazy"></button>
+                <figcaption><span>01 / 2022</span><p>El primer día. Yo fingiendo que sabía a dónde iba.</p></figcaption>
+              </figure>
+              <figure class="film-frame film-frame--landscape">
+                <button class="film-image" type="button" aria-label="Ampliar fotografía 02: El equipo"><img src="assets/archivo/02-equipo.png" alt="Alex y dos compañeros trabajan juntos en un proyecto de arquitectura." loading="lazy"></button>
+                <figcaption><span>02 / 2023</span><p>Encontré a mi equipo para sobrevivir a las entregas.</p></figcaption>
+              </figure>
+              <figure class="film-frame film-frame--landscape">
+                <button class="film-image" type="button" aria-label="Ampliar fotografía 03: Entre semestres"><img src="assets/archivo/03-entre-semestres.png" alt="Alex camina y conversa con sus amigos por una calle de Durango." loading="lazy"></button>
+                <figcaption><span>03 / ENTRE SEMESTRES</span><p>No todo pasó dentro del salón.</p></figcaption>
+              </figure>
+              <figure class="film-frame film-frame--portrait">
+                <button class="film-image" type="button" aria-label="Ampliar fotografía 04: La maqueta"><img src="assets/archivo/04-maqueta.png" alt="Alex construye una maqueta arquitectónica entre planos y materiales en una mesa de trabajo." loading="lazy"></button>
+                <figcaption><span>04 / 2025</span><p>Esto empezó como una idea y terminó ocupando toda la mesa.</p></figcaption>
+              </figure>
+              <figure class="film-frame film-frame--landscape">
+                <button class="film-image" type="button" aria-label="Ampliar fotografía 05: La última entrega"><img src="assets/archivo/05-ultima-entrega.png" alt="Alex abraza a un compañero después de presentar su último proyecto de arquitectura." loading="lazy"></button>
+                <figcaption><span>05 / 2026</span><p>La última entrega. El abrazo después.</p></figcaption>
+              </figure>
+              <figure class="film-frame film-frame--portrait">
+                <button class="film-image" type="button" aria-label="Ampliar fotografía 06: Hoy"><img src="assets/archivo/06-hoy.png" alt="Alex sonríe con su toga y sostiene un birrete frente a la facultad." loading="lazy"></button>
+                <figcaption><span>06 / HOY</span><p>Esta vez, el birrete sí es mío.</p></figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="gallery-bottom" data-gallery-reveal>
+            <p>Desliza para recorrer estos años.</p>
+            <output id="gallery-progress" aria-live="polite" aria-label="Fotografía 01 de 06">01 / 06</output>
+          </div>
+          <p class="gallery-last-note" id="gallery-last-note" hidden>Y la próxima foto podría ser contigo, celebrando.</p>
+          <div class="gallery-foot"><span>EL ARCHIVO DE LO QUE VIENE.</span><span>PÁG. 004</span></div>
+        </div>
+      </section>
     </main>
+
+    <div class="photo-viewer" id="photo-viewer" role="dialog" aria-modal="true" aria-labelledby="photo-viewer-title" hidden>
+      <div class="photo-viewer-panel">
+        <header class="photo-viewer-top"><span id="photo-viewer-title">EL ARCHIVO DE LO QUE VIENE / FOTOGRAFÍA</span><button class="photo-viewer-close" type="button" aria-label="Cerrar fotografía">Cerrar <span aria-hidden="true">×</span></button></header>
+        <div class="photo-viewer-stage"><button class="photo-viewer-prev" type="button" aria-label="Fotografía anterior">←</button><img id="photo-viewer-image" src="assets/alex-morgan-provisional.png" alt=""><button class="photo-viewer-next" type="button" aria-label="Fotografía siguiente">→</button></div>
+        <div class="photo-viewer-caption"><span id="photo-viewer-index">01 / 06</span><p id="photo-viewer-text"></p></div>
+      </div>
+    </div>
   </body>
 </html>

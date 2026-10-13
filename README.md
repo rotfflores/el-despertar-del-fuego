@@ -1,6 +1,6 @@
 # El archivo de lo que viene
 
-Invitación personal de graduación, en HTML, CSS y JavaScript sin dependencias de compilación. Incluye portada, recuerdos y el pase a la celebración.
+Invitación personal de graduación, en HTML, CSS y JavaScript sin dependencias de compilación. Incluye portada, recuerdos, el pase a la celebración y una galería fotográfica.
 
 ## Personalizar
 
@@ -27,6 +27,14 @@ El contador calcula el tiempo hasta el 19 de diciembre de 2026 a las 19:00 en `A
 «Guardar la fecha» genera el .ics a partir de la configuración. También existe `dist/assets/graduacion-alex-morgan.ics` como descarga sin JavaScript. Si personalizas la configuración, actualiza los textos de respaldo en `dist/index.html` y regenera esa descarga con `node tools/generar-calendario.mjs`.
 
 La entrada muestra todos los datos directamente. El talón está a la derecha en escritorio y debajo en celular. La aparición usa IntersectionObserver y respeta movimiento reducido; la información es visible aun sin animaciones o JavaScript.
+
+## Cuarta sección: Antes de esta foto, hubo muchas otras
+
+Las seis etapas, pies de foto, rutas, proporciones y descripciones alternativas están en `dist/gallery-config.mjs`. Sustituye las fotografías provisionales de `dist/assets/archivo/` o cambia sus rutas en esa configuración. El texto inicial también está en `dist/index.html` como respaldo para que la sección conserve su contenido sin JavaScript. Si editas las etapas y los pies, actualiza ese respaldo.
+
+La tira de negativos se desliza con el dedo o con el desplazamiento horizontal, se detiene en cada foto y ofrece botones para avanzar. El indicador y la anotación final se actualizan según la posición. Al tocar una imagen se abre un visor con controles de teclado, Escape para cerrar y retorno de foco a la foto elegida. Se respeta `prefers-reduced-motion` y no hay reproducción automática.
+
+Las seis fotografías se generaron con la herramienta integrada `image_gen`, tomando como referencia el retrato provisional de Alex. Indicaciones visuales: **01**, Alex con planos frente a la facultad el primer día; **02**, Alex con su equipo sobre planos y maquetas; **03**, Alex con amistades fuera del aula entre semestres; **04**, construcción de una gran maqueta sobre una mesa de taller; **05**, abrazo después de la última entrega; **06**, Alex con toga y birrete al graduarse. En todos los casos se pidió fotografía editorial natural, luz y grano suaves, sin texto ni marcas, manteniendo coherencia visual con el retrato de referencia. Son imágenes ficticias y reemplazables.
 
 ## Fondo y animaciones
 

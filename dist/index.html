@@ -16,6 +16,7 @@
     <script type="module" src="event.js"></script>
     <script type="module" src="gallery.js"></script>
     <script type="module" src="letter.js"></script>
+    <script type="module" src="rsvp.js"></script>
   </head>
   <body>
     <main>
@@ -288,11 +289,25 @@
         </div>
       </section>
       <section class="letter" id="carta-al-futuro" aria-labelledby="letter-title">
+        <!-- Cuadritos y rayas del fondo, repetidos en cada página. -->
+        <div class="deco deco-tl" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
+        <div class="deco deco-br" aria-hidden="true"><span class="deco-block"></span><span class="deco-bar"></span><span class="deco-vline"></span><span class="deco-hline"></span></div>
         <div class="letter-inner">
           <header class="letter-heading" data-letter-reveal>
             <span class="letter-kicker"><span aria-hidden="true">●</span> <span id="letter-chapter">ARCHIVO PERSONAL / CAPÍTULO 05</span></span>
-            <h2 id="letter-title"><span id="letter-title-first">Para mi</span><br><em id="letter-title-second">siguiente versión.</em></h2>
+            <h2 id="letter-title"><span class="l-line"><span id="letter-title-first">Para mi</span></span> <span class="l-line"><em id="letter-title-second">siguiente versión.</em></span></h2>
             <p id="letter-intro">Todavía no sé todo lo que viene. Pero me gustaría llevarme unas palabras tuyas.</p>
+            <!-- Sobre decorativo: se abre cuando la carta aparece. -->
+            <div class="letter-envelope" aria-hidden="true">
+              <div class="env">
+                <span class="env-back"></span>
+                <span class="env-card"><i></i><i></i><i></i><i></i></span>
+                <span class="env-front"></span>
+                <span class="env-flap"></span>
+              </div>
+              <span class="env-stamp"><span class="env-stamp-inner"><svg viewBox="0 0 48 32" fill="none"><path d="M24 4 44 12 24 20 4 12Z" fill="currentColor"/><path d="M13 16v7c3 3 7 4 11 4s8-1 11-4v-7" stroke="currentColor" stroke-width="2"/><path d="M39 14v9" stroke="#D76A35" stroke-width="2"/><circle cx="39" cy="25" r="2" fill="#D76A35"/></svg></span></span>
+              <span class="env-postmark"></span>
+            </div>
             <span class="letter-side-note" id="letter-side-note" aria-hidden="true">CORRESPONDENCIA / 2026</span>
           </header>
 
@@ -342,6 +357,71 @@
           </div>
         </div>
         <div class="letter-bottom"><span id="letter-bottom-brand">EL ARCHIVO DE LO QUE VIENE.</span><span id="letter-page-number">PÁG. 005</span></div>
+      </section>
+      <section class="rsvp" id="confirmacion-asistencia" aria-labelledby="rsvp-title">
+        <div class="rsvp-inner">
+          <header class="rsvp-heading" data-rsvp-reveal>
+            <span class="rsvp-kicker"><span aria-hidden="true">●</span> <span id="rsvp-chapter">ARCHIVO PERSONAL / CAPÍTULO 06</span></span>
+            <h2 id="rsvp-title"><span id="rsvp-title-first">Tu lugar</span><br><em id="rsvp-title-second">en esta historia.</em></h2>
+            <p id="rsvp-intro">Me acompañaste de alguna manera hasta aquí. Ahora me encantaría celebrar contigo.</p>
+          </header>
+
+          <div class="rsvp-register" data-rsvp-reveal>
+            <div class="rsvp-register-top"><span id="rsvp-register-label">LISTA DE INVITADOS / ÚLTIMA ANOTACIÓN</span><span class="rsvp-top-index">N.º 001</span></div>
+            <div class="rsvp-annotation" id="rsvp-annotation">NOS FALTA TU NOMBRE</div>
+            <form id="rsvp-form" novalidate>
+              <div class="rsvp-row">
+                <span class="rsvp-row-number" aria-hidden="true">01</span>
+                <div class="rsvp-row-content">
+                  <label id="rsvp-name-label" for="rsvp-name">Tu nombre</label>
+                  <input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="60" required aria-describedby="rsvp-name-error">
+                  <p class="rsvp-error" id="rsvp-name-error" role="alert" hidden></p>
+                </div>
+              </div>
+
+              <div class="rsvp-row rsvp-attendance">
+                <span class="rsvp-row-number" aria-hidden="true">02</span>
+                <div class="rsvp-row-content">
+                  <span class="rsvp-field-label" id="rsvp-attendance-label">¿Nos vemos en la celebración?</span>
+                  <div class="rsvp-options" role="radiogroup" aria-labelledby="rsvp-attendance-label" aria-describedby="rsvp-attendance-error">
+                    <label><input id="rsvp-yes" type="radio" name="attendance" value="yes" required><span id="rsvp-yes-label">Sí, ahí estaré</span></label>
+                    <label><input id="rsvp-no" type="radio" name="attendance" value="no"><span id="rsvp-no-label">Esta vez no podré</span></label>
+                  </div>
+                  <p class="rsvp-error" id="rsvp-attendance-error" role="alert" hidden></p>
+                </div>
+              </div>
+
+              <div class="rsvp-row" id="rsvp-guests-field" hidden>
+                <span class="rsvp-row-number" aria-hidden="true">03</span>
+                <div class="rsvp-row-content">
+                  <label id="rsvp-guests-label" for="rsvp-guests">Personas que asistirán, incluyéndote</label>
+                  <select id="rsvp-guests" name="guests" aria-describedby="rsvp-guests-error"><option value="1">1</option></select>
+                  <p class="rsvp-error" id="rsvp-guests-error" role="alert" hidden></p>
+                </div>
+              </div>
+
+              <div class="rsvp-row">
+                <span class="rsvp-row-number" aria-hidden="true">04</span>
+                <div class="rsvp-row-content">
+                  <label id="rsvp-note-label" for="rsvp-note">¿Algo que deba saber?</label>
+                  <textarea id="rsvp-note" name="note" rows="3" maxlength="300" aria-describedby="rsvp-note-help rsvp-note-error"></textarea>
+                  <p class="rsvp-help" id="rsvp-note-help">Por ejemplo, alguna necesidad alimentaria o de accesibilidad.</p>
+                  <p class="rsvp-error" id="rsvp-note-error" role="alert" hidden></p>
+                </div>
+              </div>
+
+              <div class="rsvp-actions">
+                <button id="rsvp-submit" type="submit" disabled>Confirmaciones disponibles próximamente</button>
+                <p id="rsvp-whatsapp-note">Se abrirá WhatsApp. Envía el mensaje para completar tu confirmación.</p>
+              </div>
+            </form>
+            <p class="rsvp-deadline" id="rsvp-deadline">Confirma antes del 10 de diciembre de 2026 para ayudarme a preparar todo.</p>
+          </div>
+        </div>
+        <footer class="rsvp-footer" data-rsvp-reveal>
+          <p id="rsvp-closing">Yo pongo el motivo. Tú haces la celebración más bonita.</p>
+          <span>EL ARCHIVO DE LO QUE VIENE. / PÁG. 006</span>
+        </footer>
       </section>
     </main>
 

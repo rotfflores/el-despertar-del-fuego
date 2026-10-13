@@ -46,6 +46,14 @@ La carta se configura en `dist/letter-config.mjs`: nombre del graduado, textos, 
 
 El nombre y el mensaje son obligatorios, con límites de 60 y 600 caracteres. La sugerencia aparece fuera del campo y nunca se añade automáticamente. El envío valida los dos campos y abre WhatsApp con el texto codificado; el invitado completa allí el envío. La carta conserva lo escrito y no muestra una confirmación de recepción. Los textos base están también en `dist/index.html` como respaldo sin JavaScript; actualiza ese respaldo si cambias la configuración.
 
+## Sexta sección: Tu lugar en esta historia
+
+Configura `dist/rsvp-config.mjs` antes de compartir la invitación: `graduateName`, `whatsappNumber`, `maxGuests` (lugares asignados a este invitado), `deadlineDate` en formato `AAAA-MM-DD`, `timeZone` y los textos de la sección. El número está vacío y «Confirmaciones disponibles próximamente» permanece desactivado hasta que se añada un destino real de WhatsApp. La cantidad inicial es una persona y el selector solo aparece cuando la respuesta es afirmativa.
+
+El nombre y la respuesta son obligatorios; la nota es opcional. El formulario limita nombre y nota a 60 y 300 caracteres, respectivamente, y muestra errores junto a los controles. Tras validar, prepara el texto correspondiente en una URL de WhatsApp codificada. Abrir WhatsApp no confirma ni registra la asistencia: el invitado debe enviar el mensaje allí. La nota de plazo cambia después del último día configurado, según `America/Mexico_City`. Los textos base también están en `dist/index.html` como respaldo sin JavaScript.
+
+Al llegar a la sección, el título sube línea por línea, el sobre verde se abre y deja asomar la carta, y después caen la estampilla y el matasellos; la hoja entra con sus campos en cascada y el sello de goma se marca al final. Al elegir un tipo de mensaje, la marca naranja se desliza a la opción y la sugerencia se escribe; al poner el nombre, el «De:» se subraya como una firma. El sobre es decorativo (`aria-hidden`) y con movimiento reducido todo aparece ya en su estado final.
+
 ## Fondo y animaciones
 
 El fondo es `dist/assets/fondo-graduacion.png` (papel gis con esquinas verde profundo y naranja tostado, birrete y diploma). Para que funcione en cualquier tamaño de pantalla sin recortar los adornos, se separa en capas dentro de `dist/assets/fondo/`: la textura de papel se repite como fondo, cada esquina se coloca en su rincón y el birrete va aparte para poder animarlo. Si cambias la imagen, vuelve a generar las capas con `python tools/preparar-fondo.py` (requiere Pillow y NumPy).

@@ -38,20 +38,26 @@ function selectedType() {
   const value = choices.find(input => input.checked)?.value;
   return config.types.find(type => type.value === value) || config.types[0];
 }
-function updateSuggestion() {
+function updateSuggestion(animate) {
   suggestion.textContent = selectedType().prompt;
+  if (animate !== true || reducedMotion.matches) return;
+  suggestion.classList.remove('is-writing');
+  void suggestion.offsetWidth;
+  suggestion.classList.add('is-writing');
 }
-choices.forEach(input => input.addEventListener('change', updateSuggestion));
+choices.forEach(input => input.addEventListener('change', () => updateSuggestion(true)));
 updateSuggestion();
 
 function updateName() {
   if (nameInput.value.length > 60) nameInput.value = nameInput.value.slice(0, 60);
   fromName.textContent = nameInput.value.trim() || config.emptyFrom;
+  fromName.classList.toggle('is-signed', !!nameInput.value.trim());
   if (!nameError.hidden && nameInput.value.trim() && nameInput.value.trim().length <= 60) clearError(nameInput, nameError);
 }
 function updateCounter() {
   if (messageInput.value.length > 600) messageInput.value = messageInput.value.slice(0, 600);
   counter.textContent = `${messageInput.value.length} / 600`;
+  counter.classList.toggle('is-near', messageInput.value.length >= 540);
   if (!messageError.hidden && messageInput.value.trim() && messageInput.value.trim().length <= 600) clearError(messageInput, messageError);
 }
 nameInput.addEventListener('input', updateName);
@@ -108,13 +114,37 @@ form.addEventListener('submit', event => {
   window.open(url, '_blank', 'noopener,noreferrer');
 });
 
-if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('letter-in-view');
-      observer.unobserve(entry.target);
+// Entrada: cada bloque se anima al llegar a él. Se revisa con el scroll para no
+// saltarse ninguno aunque se baje rápido; el sello espera a que la hoja termine.
+if (!reducedMotion.matches) {
+  section.classList.add('is-ready');
+  const sheet = section.querySelector('.letter-sheet');
+  const stamp = document.getElementById('letter-stamp');
+  let pending = [...section.querySelectorAll('[data-letter-reveal]'), stamp];
+  let sheetShownAt = 0;
+  let frame = 0;
+  const reveal = () => {
+    frame = 0;
+    pending = pending.filter(element => {
+      if (element.getBoundingClientRect().top > innerHeight * .86) return true;
+      if (element === stamp) {
+        if (!sheetShownAt) return true;
+        setTimeout(() => stamp.classList.add('is-inview'), Math.max(0, sheetShownAt + 1300 - performance.now()));
+        return false;
+      }
+      element.classList.add('is-inview');
+      if (element === sheet) sheetShownAt = performance.now();
+      return false;
     });
-  }, {threshold: .08});
-  section.querySelectorAll('[data-letter-reveal]').forEach(element => observer.observe(element));
+    if (!pending.length) {
+      removeEventListener('scroll', onScroll);
+      removeEventListener('resize', onScroll);
+    }
+  };
+  const onScroll = () => {
+    if (!frame) frame = requestAnimationFrame(reveal);
+  };
+  addEventListener('scroll', onScroll, {passive: true});
+  addEventListener('resize', onScroll);
+  reveal();
 }

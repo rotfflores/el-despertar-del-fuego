@@ -3,18 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#F4F3ED">
+    <meta name="theme-color" content="#F2F0EB">
     <meta name="description" content="Una etapa termina. Lo que viene merece empezar contigo. La invitación de graduación de Alex Morgan.">
     <title>El archivo de lo que viene — Graduación de Alex Morgan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;450;500;550;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="assets/fondo/papel.jpg">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.classList.add('js')</script>
     <script src="invitation.js" defer></script>
+    <script type="module" src="event.js"></script>
   </head>
   <body>
     <main>
       <section class="hero" aria-labelledby="hero-title">
+        <!-- Adornos del fondo (assets/fondo-graduacion.png separado en capas
+             con tools/preparar-fondo.py para que se adapte a cualquier pantalla). -->
+        <div class="ornaments" aria-hidden="true">
+          <img class="corner corner-tl" src="assets/fondo/esquina-superior-izquierda.png" width="330" height="520" alt="">
+          <img class="corner corner-tr" src="assets/fondo/esquina-superior-derecha.png" width="321" height="610" alt="">
+          <img class="corner corner-bl" src="assets/fondo/esquina-inferior-izquierda.png" width="290" height="587" alt="">
+          <img class="corner corner-br" src="assets/fondo/esquina-inferior-derecha.png" width="331" height="452" alt="">
+          <span class="cap-holder"><img class="cap" src="assets/fondo/birrete.png" width="214" height="162" alt=""></span>
+        </div>
+
         <header class="masthead">
           <a class="wordmark" href="#portada" aria-label="El archivo de lo que viene, portada">el archivo<span>de lo que viene.</span></a>
           <span class="masthead-note">UNA INVITACIÓN A MI GRADUACIÓN</span>
@@ -24,8 +37,8 @@
         <div class="cover" id="portada">
           <div class="story">
             <div class="archive-label reveal-label"><span aria-hidden="true">●</span> ARCHIVO PERSONAL / CAPÍTULO 01</div>
-            <p class="intro reveal-title">Después de tantos días imaginándolo…</p>
-            <h1 id="hero-title" class="reveal-title">No llegué<br>hasta <span class="first-here">aquí</span><br>para quedarme<br><em class="last-here">aquí.</em></h1>
+            <p class="intro reveal-intro">Después de tantos días imaginándolo…</p>
+            <h1 id="hero-title" class="headline"><span class="line"><span>No llegué</span></span> <span class="line"><span>hasta <span class="first-here">aquí</span></span></span> <span class="line"><span>para quedarme</span></span> <span class="line"><span><em class="last-here">aquí.</em></span></span></h1>
             <div class="story-ending reveal-copy">
               <p>Una etapa termina.<br>Lo que viene merece empezar contigo.</p>
               <a class="celebrate" href="#siguiente-seccion"><span>Esto merece celebrarse</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1.4"/></svg></a>
@@ -33,14 +46,19 @@
             </div>
           </div>
 
-          <figure class="portrait-block reveal-photo">
-            <div class="photo-heading"><span>EL PRESENTE, PARA EL RECUERDO.</span><span>FIG. 01</span></div>
+          <figure class="portrait-block">
+            <div class="photo-heading reveal-label-late"><span>EL PRESENTE, PARA EL RECUERDO.</span><span>FIG. 01</span></div>
             <div class="photo-wrap">
-              <img id="graduate-photo" class="portrait" src="assets/alex-morgan-provisional.png" width="1024" height="1280" alt="Retrato provisional de un joven graduado con toga negra, sonriendo frente a la arquitectura de una universidad" fetchpriority="high">
+              <span class="photo-block" aria-hidden="true"></span>
+              <span class="photo-bar" aria-hidden="true"></span>
+              <span class="photo-frame" aria-hidden="true"></span>
+              <div class="photo-mask">
+                <img id="graduate-photo" class="portrait" src="assets/alex-morgan-provisional.png" width="1024" height="1280" alt="Retrato provisional de un joven graduado con toga negra, sonriendo frente a la arquitectura de una universidad" fetchpriority="high">
+              </div>
               <span class="achievement">Sí, lo logré.<span aria-hidden="true">↗</span></span>
               <span class="side-label">ARCHIVO DE UN NUEVO COMIENZO — 2026</span>
             </div>
-            <figcaption>
+            <figcaption class="reveal-caption">
               <div class="graduate-details"><span class="detail-label">EL PROTAGONISTA DE ESTA HISTORIA</span><h2 id="graduate-name">Alex Morgan</h2><p id="graduate-degree">Licenciatura en Arquitectura</p></div>
               <p class="generation" id="graduate-generation">Generación<br><span>2022 — 2026</span></p>
             </figcaption>
@@ -49,13 +67,159 @@
 
         <footer class="cover-footer">
           <span class="folio">PÁG. <span>001</span></span>
-          <a class="scroll-invitation" href="#siguiente-seccion"><span>Desliza. Esta historia apenas empieza.</span><svg viewBox="0 0 16 32" fill="none" aria-hidden="true"><path d="M8 1v28m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1"/></svg></a>
+          <a class="scroll-invitation" href="#siguiente-seccion"><span>Desliza. Esta historia apenas empieza.</span><svg viewBox="0 0 16 32" fill="none" aria-hidden="true"><path class="scroll-stem" d="M8 1v28"/><path d="M2 23l6 6 6-6" stroke="currentColor" stroke-width="1"/></svg></a>
           <span class="footer-date">2026 / UN NUEVO COMIENZO</span>
         </footer>
       </section>
-      <!-- Punto de enlace para la siguiente sección. Reemplaza este marcador
-           por tu futura sección, conservando id="siguiente-seccion". -->
-      <div id="siguiente-seccion" class="next-anchor" tabindex="-1" aria-label="Inicio de la siguiente sección"></div>
+      <!-- Sección 2. Los textos y fotografías de las fichas se editan en
+           el arreglo memories de invitation.js. -->
+      <section class="archive" id="siguiente-seccion" tabindex="-1" aria-labelledby="archive-title">
+        <div class="archive-inner">
+          <header class="archive-head">
+            <div class="archive-heading">
+              <div class="archive-label" data-reveal><span aria-hidden="true">●</span> ARCHIVO PERSONAL / CAPÍTULO 02</div>
+              <h2 id="archive-title" class="archive-title" data-reveal>Lo que no sale<br><em>en el diploma.</em></h2>
+            </div>
+            <div class="archive-aside" data-reveal>
+              <p class="archive-intro">Hay cosas que ninguna calificación puede contar. Estas también me trajeron hasta aquí.</p>
+              <p class="archive-hint"><span class="hint-tab" aria-hidden="true"></span>Toca cada ficha para descubrir el recuerdo.</p>
+            </div>
+          </header>
+
+          <div class="fichas">
+            <span class="archive-side" aria-hidden="true">NOTAS AL MARGEN — TRES RECUERDOS</span>
+          <article class="ficha ficha-01" data-memory="0">
+            <span class="ficha-tab" aria-hidden="true">FICHA 01</span>
+            <header class="ficha-head">
+              <span class="ficha-number" aria-hidden="true">01</span>
+              <h3 class="ficha-title" id="ficha-01-titulo"><span class="visually-hidden">01 / </span>El día que casi renuncié</h3>
+              <p class="ficha-teaser">También hubo un ‘ya no puedo’.</p>
+            </header>
+            <button class="ficha-toggle" type="button" aria-expanded="true" aria-controls="ficha-01-recuerdo"><span class="toggle-text">Cerrar recuerdo</span><span class="toggle-icon" aria-hidden="true"></span></button>
+            <div class="ficha-panel" id="ficha-01-recuerdo" role="region" aria-labelledby="ficha-01-titulo">
+              <div class="ficha-panel-inner">
+                <figure class="ficha-photo">
+                  <div class="photo-slot" data-photo-slot>
+                    <span class="slot-label">FOTOGRAFÍA PENDIENTE</span>
+                    <span class="slot-desc">Un momento de estudio o trabajo en un proyecto.</span>
+                  </div>
+                  <figcaption><span>FIG. 02.1</span><span>EL ESTUDIO</span></figcaption>
+                </figure>
+                <p class="ficha-body">Hubo una entrega que salió mal y un momento en el que dudé de todo. Descansé, pedí ayuda y volví a intentarlo. Hoy también celebro haber seguido.</p>
+                <span class="ficha-margin" aria-hidden="true">RECUERDO 01 / 03</span>
+              </div>
+            </div>
+          </article>
+          <article class="ficha ficha-02" data-memory="1">
+            <span class="ficha-tab" aria-hidden="true">FICHA 02</span>
+            <header class="ficha-head">
+              <span class="ficha-number" aria-hidden="true">02</span>
+              <h3 class="ficha-title" id="ficha-02-titulo"><span class="visually-hidden">02 / </span>El caos que ahora extraño</h3>
+              <p class="ficha-teaser">Una última entrega. Tres cafés. Cero horas de sueño.</p>
+            </header>
+            <button class="ficha-toggle" type="button" aria-expanded="true" aria-controls="ficha-02-recuerdo"><span class="toggle-text">Cerrar recuerdo</span><span class="toggle-icon" aria-hidden="true"></span></button>
+            <div class="ficha-panel" id="ficha-02-recuerdo" role="region" aria-labelledby="ficha-02-titulo">
+              <div class="ficha-panel-inner">
+                <figure class="ficha-photo">
+                  <div class="photo-slot" data-photo-slot>
+                    <span class="slot-label">FOTOGRAFÍA PENDIENTE</span>
+                    <span class="slot-desc">El graduado con sus compañeros.</span>
+                  </div>
+                  <figcaption><span>FIG. 02.2</span><span>LOS COMPAÑEROS</span></figcaption>
+                </figure>
+                <p class="ficha-body">Entre maquetas, mensajes de madrugada y risas a destiempo, terminamos construyendo algo más que proyectos: recuerdos que me llevo para siempre.</p>
+                <span class="ficha-margin" aria-hidden="true">RECUERDO 02 / 03</span>
+              </div>
+            </div>
+          </article>
+          <article class="ficha ficha-03" data-memory="2">
+            <span class="ficha-tab" aria-hidden="true">FICHA 03</span>
+            <header class="ficha-head">
+              <span class="ficha-number" aria-hidden="true">03</span>
+              <h3 class="ficha-title" id="ficha-03-titulo"><span class="visually-hidden">03 / </span>Quienes me sostuvieron</h3>
+              <p class="ficha-teaser">Este logro también tiene otros nombres.</p>
+            </header>
+            <button class="ficha-toggle" type="button" aria-expanded="true" aria-controls="ficha-03-recuerdo"><span class="toggle-text">Cerrar recuerdo</span><span class="toggle-icon" aria-hidden="true"></span></button>
+            <div class="ficha-panel" id="ficha-03-recuerdo" role="region" aria-labelledby="ficha-03-titulo">
+              <div class="ficha-panel-inner">
+                <figure class="ficha-photo">
+                  <div class="photo-slot" data-photo-slot>
+                    <span class="slot-label">FOTOGRAFÍA PENDIENTE</span>
+                    <span class="slot-desc">El graduado con su familia o personas cercanas.</span>
+                  </div>
+                  <figcaption><span>FIG. 02.3</span><span>LA FAMILIA</span></figcaption>
+                </figure>
+                <p class="ficha-body">A quienes me escucharon, me acompañaron y confiaron en mí cuando yo dudaba: gracias. En este logro hay un poquito de cada uno.</p>
+                <span class="ficha-margin" aria-hidden="true">RECUERDO 03 / 03</span>
+              </div>
+            </div>
+          </article>
+          </div>
+
+          <footer class="archive-close" data-reveal>
+            <p class="archive-closing">Por todo esto, la celebración va mucho más allá de un título.</p>
+            <a class="archive-link" href="#detalles-del-evento">Vamos a celebrar <span aria-hidden="true">→</span></a>
+          </footer>
+          <span class="archive-folio" aria-hidden="true">PÁG. <span>002</span></span>
+        </div>
+      </section>
+      <section class="event" id="detalles-del-evento" tabindex="-1" aria-labelledby="event-title">
+        <div class="event-inner">
+          <header class="event-heading" data-event-reveal>
+            <div class="event-kicker"><span>ARCHIVO PERSONAL / CAPÍTULO 03</span><span class="event-folio" aria-hidden="true">PÁG. 003</span></div>
+            <h2 id="event-title">El siguiente capítulo<br><em>empieza con una fiesta.</em></h2>
+            <p>Ya hubo desvelos, entregas y muchos nervios.<br class="event-desktop-break"> Ahora toca brindar, bailar y celebrar contigo.</p>
+          </header>
+
+          <article class="event-ticket" aria-label="Pase para la celebración de graduación" data-event-reveal>
+            <div class="ticket-main">
+              <header class="ticket-heading">
+                <p class="ticket-eyebrow">CELEBRACIÓN DE GRADUACIÓN</p>
+                <h3 data-event="graduate">Alex Morgan · Arquitectura</h3>
+              </header>
+              <div class="ticket-details">
+                <div class="ticket-date">
+                  <span class="ticket-label">RESERVA ESTE DÍA</span>
+                  <time datetime="2026-12-19" id="event-date"><span class="ticket-day" data-event="day">19</span><span class="ticket-month" data-event="month">diciembre</span><span class="ticket-year" data-event="year">2026</span></time>
+                </div>
+                <div class="ticket-information">
+                  <div class="ticket-time"><h4 class="ticket-label">LA CITA</h4><p data-event="reception">Recepción · 7:00 p. m.</p><p data-event="dinner">Cena · 8:00 p. m.</p></div>
+                  <div class="ticket-place"><h4 class="ticket-label">EL LUGAR</h4><p class="venue-name" data-event="venue">Jardín Horizonte</p><p data-event="city">Durango, México</p><p class="address-pending" data-event="address">Dirección por confirmar</p></div>
+                  <div class="ticket-attire"><h4 class="ticket-label">VESTIMENTA</h4><p data-event="attire">Formal, con ganas de celebrar.</p></div>
+                </div>
+              </div>
+              <div class="ticket-bottom" aria-hidden="true"><span>UN LOGRO. MIL POSIBILIDADES.</span><span>ARCHIVO / 03</span></div>
+            </div>
+            <aside class="ticket-stub">
+              <span class="stub-label">PASE AL SIGUIENTE CAPÍTULO</span>
+              <svg class="ticket-seal" viewBox="0 0 84 84" fill="none" aria-hidden="true"><circle cx="42" cy="42" r="39" stroke="currentColor" stroke-width=".8"/><path d="m18 35 24-11 24 11-24 11-24-11Zm9 5v13c9 7 21 7 30 0V40M66 35v19m0 0-2 8h4l-2-8Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"/></svg>
+              <p class="stub-reason">Motivo de acceso:<br><em>formar parte<br>de mi historia.</em></p>
+              <p class="stub-note">Guarda esta fecha.<br>Me hará mucha ilusión verte ahí.</p>
+              <span class="stub-number" aria-hidden="true">ADMISIÓN PERSONAL / 001</span>
+            </aside>
+          </article>
+
+          <div class="event-after" data-event-reveal>
+            <div class="countdown-area">
+              <p class="countdown-intro">Nos vemos en…</p>
+              <div class="event-countdown" id="event-countdown" role="timer" aria-live="off" hidden>
+                <div><span id="countdown-days">00</span><span class="countdown-label">días</span></div><span class="countdown-colon" aria-hidden="true">:</span>
+                <div><span id="countdown-hours">00</span><span class="countdown-label">horas</span></div><span class="countdown-colon" aria-hidden="true">:</span>
+                <div><span id="countdown-minutes">00</span><span class="countdown-label">minutos</span></div><span class="countdown-colon" aria-hidden="true">:</span>
+                <div><span id="countdown-seconds">00</span><span class="countdown-label">segundos</span></div>
+              </div>
+              <p class="event-arrived" id="event-arrived" role="status" hidden>Llegó el día. ¡Vamos a celebrar!</p>
+              <noscript><p class="countdown-fallback">19 de diciembre de 2026 · 7:00 p. m.</p></noscript>
+              <p class="event-timezone">HORA DE CIUDAD DE MÉXICO</p>
+            </div>
+            <div class="event-actions">
+              <a class="event-button event-save" id="save-event-date" href="assets/graduacion-alex-morgan.ics" download="graduacion-alex-morgan.ics"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="6" width="16" height="15" rx="1"/><path d="M8 3v6m8-6v6M4 12h16m-12 4h3"/></svg><span>Guardar la fecha</span></a>
+              <button class="event-button event-location" id="event-location" type="button" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Ubicación próximamente</span></button>
+            </div>
+          </div>
+          <footer class="event-footer"><span>EL ARCHIVO DE LO QUE VIENE.</span><span>ESTA VEZ, EL RECUERDO LO HACEMOS JUNTOS.</span></footer>
+        </div>
+      </section>
     </main>
   </body>
 </html>

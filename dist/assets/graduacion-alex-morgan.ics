@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//El archivo de lo que viene//Graduacion//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:America/Mexico_City
+BEGIN:VEVENT
+UID:graduacion-2026-12-19-Alex%20Morgan%20%C2%B7%20Arquitectura@archivo-per
+ sonal.invalid
+DTSTAMP:20261013T163106Z
+DTSTART:20261220T010000Z
+DTEND:20261220T050000Z
+SUMMARY:Celebración de graduación — Alex Morgan
+LOCATION:Jardín Horizonte\, Durango\, México\, Dirección por confirmar
+DESCRIPTION:Recepción: 19:00. Cena: 20:00.\nFormal\, con ganas de celebrar
+ .\nDirección por confirmar\nFin provisional: 23:00.\nHorario de America/M
+ exico_City.
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

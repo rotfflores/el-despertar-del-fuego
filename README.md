@@ -1,6 +1,6 @@
 # El archivo de lo que viene
 
-Únicamente el hero de una invitación personal de graduación, en HTML, CSS y JavaScript sin dependencias de compilación.
+Invitación personal de graduación, en HTML, CSS y JavaScript sin dependencias de compilación. Incluye portada, recuerdos y el pase a la celebración.
 
 ## Personalizar
 
@@ -8,9 +8,33 @@ Edita el objeto `invitation` en `dist/invitation.js` para cambiar el nombre, car
 
 Para reemplazarla, coloca tu fotografía en `dist/assets/` y actualiza `photo` y `photoAlt`. Los textos también están presentes en `dist/index.html` para que el hero siga completo sin JavaScript; actualízalos si cambias los datos. La fecha de portada usa únicamente el año ficticio de graduación: no presupone una fecha real del evento.
 
-El botón y la indicación inferior enlazan con `#siguiente-seccion`. Sustituye el marcador al final del documento por tu siguiente sección conservando ese identificador. Por ahora, se desplaza hasta el final del hero y no se incluye ninguna sección adicional.
+El botón y la indicación inferior del hero enlazan con `#siguiente-seccion`, que es la segunda sección.
 
 Las animaciones respetan `prefers-reduced-motion`; sin JavaScript todos los textos, enlaces y la fotografía siguen disponibles. Las fuentes de Google tienen alternativas serif y sans serif del sistema.
+
+## Segunda sección: Lo que no sale en el diploma
+
+Tres fichas que se abren y cierran con un botón (pueden estar varias abiertas). Sus textos y fotografías se editan en el objeto `memories` de `dist/invitation.js`; los textos también están en `dist/index.html` para que la sección se lea completa sin JavaScript (sin JavaScript las fichas aparecen abiertas). Mientras `photo` esté vacío, la ficha muestra un recuadro de «Fotografía pendiente» con la descripción de la foto que va ahí. Para usar una foto, colócala en `dist/assets/` y escribe su ruta en `photo` y su descripción en `photoAlt`.
+
+El enlace «Vamos a celebrar →» lleva al capítulo 03, `#detalles-del-evento`.
+
+## Tercera sección: El siguiente capítulo empieza con una fiesta
+
+Edita los datos ficticios del evento en `dist/event-config.mjs`: nombre, graduado, fecha, recepción, cena, fin provisional, lugar, ciudad, dirección, vestimenta y `locationUrl`. Mientras `locationUrl` esté vacío, «Ubicación próximamente» es un botón desactivado, sin enlace. Cuando tengas una ubicación real, configura una URL HTTP o HTTPS y aparecerá «Cómo llegar».
+
+El contador calcula el tiempo hasta el 19 de diciembre de 2026 a las 19:00 en `America/Mexico_City`, independientemente de la zona del visitante. Al llegar a la fecha muestra «Llegó el día. ¡Vamos a celebrar!». El archivo de calendario incluye el inicio a las 19:00 y el fin provisional a las 23:00, equivalentes a 01:00 y 05:00 UTC del 20 de diciembre. Las fechas UTC del .ics son inequívocas y `X-WR-TIMEZONE` declara la zona de México.
+
+«Guardar la fecha» genera el .ics a partir de la configuración. También existe `dist/assets/graduacion-alex-morgan.ics` como descarga sin JavaScript. Si personalizas la configuración, actualiza los textos de respaldo en `dist/index.html` y regenera esa descarga con `node tools/generar-calendario.mjs`.
+
+La entrada muestra todos los datos directamente. El talón está a la derecha en escritorio y debajo en celular. La aparición usa IntersectionObserver y respeta movimiento reducido; la información es visible aun sin animaciones o JavaScript.
+
+## Fondo y animaciones
+
+El fondo es `dist/assets/fondo-graduacion.png` (papel gis con esquinas verde profundo y naranja tostado, birrete y diploma). Para que funcione en cualquier tamaño de pantalla sin recortar los adornos, se separa en capas dentro de `dist/assets/fondo/`: la textura de papel se repite como fondo, cada esquina se coloca en su rincón y el birrete va aparte para poder animarlo. Si cambias la imagen, vuelve a generar las capas con `python tools/preparar-fondo.py` (requiere Pillow y NumPy).
+
+La paleta de `styles.css` sale del mismo fondo (`--green`, `--orange`, `--paper`). La variable `--s` controla el tamaño de los adornos en cada pantalla.
+
+Secuencia de entrada: las esquinas se despliegan desde los bordes, el titular sube línea por línea, la fotografía se descubre de abajo hacia arriba con su marco y bloques de color, cae el birrete (que luego se mece y sigue al cursor) y el sello «Sí, lo logré.» se estampa. El botón principal lanza confeti con los colores del fondo antes de desplazarse a la siguiente sección.
 
 ## Vista local
 

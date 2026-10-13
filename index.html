@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0;url=./dist/">
+    <title>El archivo de lo que viene — Graduación de Alex Morgan</title>
+    <script>
+      const invitation = new URL('./dist/', location.href);
+      invitation.search = location.search;
+      invitation.hash = location.hash;
+      location.replace(invitation.href);
+    </script>
+  </head>
+  <body>
+    <p>Abriendo la invitación… <a href="./dist/">Entrar a la invitación</a></p>
+  </body>
+</html>

@@ -76,6 +76,10 @@ Secuencia de entrada: las esquinas se despliegan desde los bordes, el titular su
 
 Ejecuta `node preview.mjs` y visita http://127.0.0.1:4174. Puedes elegir otro puerto con `node preview.mjs 4180`. Los archivos publicables están en `dist/`.
 
+## GitHub Pages
+
+GitHub Pages publica la raíz de `main`. El `index.html` de la raíz dirige a `dist/`, donde vive la invitación, y conserva el fragmento de la URL (por ejemplo, `#continuara`). Al actualizar el sitio, edita los archivos de `dist/` y sube los cambios a `main`; no hace falta copiar los recursos a la raíz. El dominio personalizado se declara en `CNAME`.
+
 ## Imagen provisional
 
 Modo: herramienta integrada `image_gen` (habilidad `imagegen`). Archivo: `dist/assets/alex-morgan-provisional.png`.
